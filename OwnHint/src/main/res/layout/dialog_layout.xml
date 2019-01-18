@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/universalDialog_ll_root"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_gravity="center"
+    android:orientation="vertical"
+    android:paddingTop="10dp"
+    tools:background="#FFCCCCCC"
+    tools:layout_marginLeft="60dp"
+    tools:layout_marginRight="60dp">
+
+    <TextView
+        android:id="@+id/universalDialog_btv_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="10dp"
+        android:visibility="gone"
+        tools:text="Title"
+        tools:textColor="#FF000000"
+        tools:textSize="15sp"
+        tools:textStyle="bold"
+        tools:visibility="visible" />
+
+    <TextView
+        android:id="@+id/universalDialog_btv_content"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:lineSpacingExtra="10dp"
+        android:padding="15dp"
+        tools:text="I have a dream!"
+        tools:textColor="#FF333333"
+        tools:textSize="12sp" />
+
+    <View
+        android:id="@+id/universalDialog_v_contentDivider"
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:visibility="gone"
+        tools:background="#FF333333"
+        tools:visibility="visible" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/universalDialog_btv_leftButton"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_centerInParent="true"
+            android:layout_weight="1"
+            android:ellipsize="end"
+            android:gravity="center"
+            android:singleLine="true"
+            tools:text="cancel"
+            tools:textColor="#FF888888"
+            tools:textSize="15sp" />
+
+        <View
+            android:id="@+id/universalDialog_v_buttonDivider"
+            android:layout_width="0.5dp"
+            android:layout_height="match_parent"
+            android:visibility="gone"
+            tools:background="#FF333333"
+            tools:visibility="visible" />
+
+        <TextView
+            android:id="@+id/universalDialog_btv_rightButton"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_centerInParent="true"
+            android:layout_weight="1"
+            android:ellipsize="end"
+            android:gravity="center"
+            android:singleLine="true"
+            tools:text="sure"
+            tools:textColor="#FF333333"
+            tools:textSize="15sp" />
+    </LinearLayout>
+</LinearLayout>
