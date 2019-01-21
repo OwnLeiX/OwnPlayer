@@ -1,3 +1,6 @@
 <resources>
     <string name="app_name">OwnPlayer</string>
+    <string name="history">历史记录</string>
+    <string name="recently">最近浏览</string>
+    <string name="local">本地文件</string>
 </resources>

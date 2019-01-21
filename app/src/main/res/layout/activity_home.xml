@@ -19,7 +19,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="150dp">
             <android.support.design.widget.CollapsingToolbarLayout
-                    android:id="@+id/homeActivity_ctl_title"
+                    android:id="@+id/homeActivity_ctl_titleLayout"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     app:layout_scrollFlags="scroll|exitUntilCollapsed"
@@ -35,7 +35,6 @@
                         android:id="@+id/homeActivity_iv_titleBg"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:src="@drawable/exo_icon_fastforward"
                         android:scaleType="centerCrop"
                         app:layout_collapseMode="none"/>
                 <android.support.v7.widget.Toolbar

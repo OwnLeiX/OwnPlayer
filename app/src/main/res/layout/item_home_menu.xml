@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="horizontal"
+    android:layout_width="match_parent"
+    android:gravity="center_vertical"
+    android:paddingStart="10dp"
+    android:paddingEnd="10dp"
+    android:layout_height="50dp">
+
+    <TextView
+        android:id="@+id/menu_tv"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_weight="1"
+        android:textColor="@color/gray99"
+        android:textSize="14sp"
+        android:gravity="start|center_vertical"
+        tools:text="@string/recently" />
+
+    <ImageView
+        android:id="@+id/menu_iv"
+        android:layout_width="40dp"
+        android:layout_marginStart="10dp"
+        android:layout_height="40dp"
+        android:scaleType="fitCenter"
+        tools:src="@drawable/exo_notification_small_icon" />
+</LinearLayout>
