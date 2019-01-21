@@ -1,8 +1,9 @@
-package own.lx.player
+package own.lx.player.common.dao
 
 import android.database.sqlite.SQLiteDatabase
 import android.database.sqlite.SQLiteOpenHelper
 import android.util.Log
+import own.lx.player.OwnApplication
 import own.lx.player.entity.VideoFileEntity
 
 /**
@@ -15,7 +16,7 @@ class HistoriesDAO() {
 
     private val mDatabaseName: String = "db_histories"
     private val mTableName: String = "histories"
-    private val mVersion: Int = 0
+    private val mVersion: Int = 1
 
     private val mColumnNameId: String = "_id"
     private val mColumnNameName: String = "name"
@@ -30,14 +31,7 @@ class HistoriesDAO() {
             override fun onCreate(db: SQLiteDatabase?) {
                 try {
                     db!!.execSQL(
-                        "CREATE TABLE $mTableName (? INT PRIMARY KEY NOT NULL, ? TEXT NOTNULL,? TEXT NOT NULL,? TEXT NOT NULL,? TEXT NOT NULL)",
-                        arrayOf(
-                            mColumnNameId,
-                            mColumnNameName,
-                            mColumnNamePostFix,
-                            mColumnNamePath,
-                            mColumnNameTimestamp
-                        )
+                        "CREATE TABLE $mTableName ($mColumnNameId INTEGER PRIMARY KEY NOT NULL, $mColumnNameName VARCHAR NOT NULL,$mColumnNamePostFix VARCHAR NOT NULL,$mColumnNamePath VARCHAR NOT NULL,$mColumnNameTimestamp VARCHAR NOT NULL)"
                     )
                 } catch (e: Exception) {
                     Log.wtf("HistoriesDAO", "create database failed", e)
@@ -54,7 +48,7 @@ class HistoriesDAO() {
         val db = mHelper.readableDatabase
         if (db.isOpen) {
             val cursor = db.rawQuery(
-                "SELECT (?),(?),(?),(?),(?) FROM TABLE $mTableName ORDER BY (?) DESC",
+                "SELECT (?),(?),(?),(?),(?) FROM $mTableName ORDER BY (?) DESC",
                 arrayOf(
                     mColumnNameId,
                     mColumnNameName,
@@ -76,6 +70,7 @@ class HistoriesDAO() {
                 if (entity.nonNull())
                     returnValue.add(entity)
             }
+            cursor.close()
         }
         return returnValue
     }
@@ -85,7 +80,7 @@ class HistoriesDAO() {
         val db = mHelper.readableDatabase
         if (db.isOpen) {
             val cursor = db.rawQuery(
-                "SELECT (?),(?),(?),(?),(?) FROM TABLE $mTableName ORDER BY (?) DESC LIMIT $limit",
+                "SELECT (?),(?),(?),(?),(?) FROM $mTableName ORDER BY (?) DESC LIMIT $limit",
                 arrayOf(
                     mColumnNameId,
                     mColumnNameName,
@@ -107,6 +102,7 @@ class HistoriesDAO() {
                 if (entity.nonNull())
                     returnValue.add(entity)
             }
+            cursor.close()
         }
         return returnValue
     }
