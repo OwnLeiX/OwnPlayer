@@ -13,7 +13,9 @@ class VideoFileEntity(
     private var fileName: String,
     private var path: String,
     private var postfix: String,
-    private var timestamp: Long
+    private var timestamp: Long,
+    private var md5: String,
+    private var size: Long
 ) : IEntity {
 
     constructor(jsonObject: JSONObject) :
@@ -22,7 +24,9 @@ class VideoFileEntity(
                 jsonObject.getString("fileName"),
                 jsonObject.getString("postfix"),
                 jsonObject.getString("path"),
-                jsonObject.getLong("timestamp")
+                jsonObject.getLong("timestamp"),
+                jsonObject.getString("md5"),
+                jsonObject.getLong("size")
             )
 
     override fun nonNull(): Boolean {
@@ -36,6 +40,8 @@ class VideoFileEntity(
         jsonObject.put("postfix", postfix)
         jsonObject.put("path", path)
         jsonObject.put("timestamp", timestamp)
+        jsonObject.put("md5", md5)
+        jsonObject.put("size", size)
         return jsonObject
     }
 }
