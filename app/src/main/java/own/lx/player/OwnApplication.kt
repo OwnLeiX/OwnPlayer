@@ -2,7 +2,6 @@ package own.lx.player
 
 import android.app.Application
 import lx.own.frame.frame.base.BaseApplication
-import kotlin.properties.Delegates
 
 /**
  * <b> </b><br/>
@@ -13,12 +12,15 @@ import kotlin.properties.Delegates
 class OwnApplication : BaseApplication() {
 
     companion object {
-        var instance: Application by Delegates.notNull<Application>()
+        lateinit var instance: Application
+    }
+
+    init {
+        instance = this
     }
 
     override fun onCreate() {
         super.onCreate()
-        OwnApplication.instance = this
     }
 
     override fun onTerminate() {
