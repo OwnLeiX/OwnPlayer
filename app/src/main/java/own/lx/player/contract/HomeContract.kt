@@ -1,5 +1,6 @@
 package own.lx.player.contract
 
+import android.graphics.Bitmap
 import android.view.View
 import io.reactivex.Observable
 import lx.own.frame.frame.mvp.BaseModel
@@ -30,5 +31,6 @@ interface HomeContract {
 
     abstract class IPresenter : BasePresenter<IModel, IView>() {
         abstract fun provideMenuClickListener(): View.OnClickListener
+        abstract fun processBitmap(bitmap: Bitmap?, function: (Bitmap) -> Unit)
     }
 }

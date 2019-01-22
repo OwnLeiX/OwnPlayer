@@ -3,4 +3,6 @@
     <string name="history">历史记录</string>
     <string name="recently">最近浏览</string>
     <string name="local">本地文件</string>
+    <string name="default_nickname">游客</string>
+    <string name="default_feeling">注册是不可能注册的，这辈子都不可能注册的。</string>
 </resources>
