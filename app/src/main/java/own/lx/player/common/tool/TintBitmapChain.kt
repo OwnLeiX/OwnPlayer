@@ -30,7 +30,7 @@ class TintBitmapChain : BitmapProcessor.Chain {
     }
 
     override fun process(render: RenderScript, inAlc: Allocation, outAlc: Allocation) {
-        val script: ScriptC_pixelTint = ScriptC_pixelTint(render)
+        val script = ScriptC_pixelTint(render)
         script._maskColor = this@TintBitmapChain.maskColor
         script.forEach_pixelTint(inAlc, outAlc)
     }

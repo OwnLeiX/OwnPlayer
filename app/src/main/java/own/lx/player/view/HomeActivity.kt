@@ -78,9 +78,23 @@ class HomeActivity : BaseFrameActivity<HomePresenter, HomeModel>(), HomeContract
         if (tv.isLaidOut) {
             fixTextViewWidth(tv, s)
         } else {
-            tv.addOnLayoutChangeListener { _, _, _, _, _, _, _, _, _ ->
-                fixTextViewWidth(tv, s)
-            }
+            tv.addOnLayoutChangeListener(object : View.OnLayoutChangeListener {
+                override fun onLayoutChange(
+                    v: View?,
+                    left: Int,
+                    top: Int,
+                    right: Int,
+                    bottom: Int,
+                    oldLeft: Int,
+                    oldTop: Int,
+                    oldRight: Int,
+                    oldBottom: Int
+                ) {
+                    tv.removeOnLayoutChangeListener(this)
+                    fixTextViewWidth(tv, s)
+                }
+            })
+//            tv.addOnLayoutChangeListener { _, _, _, _, _, _, _, _, _ -> fixTextViewWidth(tv, s) }
         }
     }
 

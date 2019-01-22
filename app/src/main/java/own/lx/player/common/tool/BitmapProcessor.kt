@@ -39,7 +39,7 @@ class BitmapProcessor {
         mChains.clear()
     }
 
-    fun destory() {
+    fun destroy() {
         mChains.clear()
         mRenderScript.destroy()
     }

@@ -51,7 +51,7 @@ class HomePresenter : HomeContract.IPresenter() {
     }
 
     override fun onIViewDestroyed() {
-        mBitmapProcessor?.destory()
+        mBitmapProcessor?.destroy()
     }
 
     override fun provideMenuClickListener(): View.OnClickListener {
