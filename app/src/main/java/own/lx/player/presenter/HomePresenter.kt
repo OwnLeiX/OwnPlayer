@@ -75,20 +75,5 @@ class HomePresenter : HomeContract.IPresenter() {
 
     private fun refreshModule() {
         mView.onModuleSwitched(mCurrentlyModule)
-        mView.onTimeConsumingTaskStarted()
-        mModel.queryData(mCurrentlyModule)
-            .subscribeOn(Schedulers.io())
-            .observeOn(AndroidSchedulers.mainThread())
-            .subscribe(
-                {
-                    mView.onReceivedData(it)
-                },
-                {
-                    mView.onReceivedError(it.message ?: "")
-                },
-                {
-                    mView.onTimeConsumingTaskFinished()
-                }
-            )
     }
 }

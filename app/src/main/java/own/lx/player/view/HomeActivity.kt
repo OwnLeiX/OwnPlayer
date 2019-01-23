@@ -3,7 +3,11 @@ package own.lx.player.view
 import android.graphics.Bitmap
 import android.graphics.drawable.BitmapDrawable
 import android.support.annotation.StringRes
+import android.support.design.widget.AppBarLayout
 import android.support.design.widget.CollapsingToolbarLayout
+import android.support.v4.app.Fragment
+import android.support.v4.widget.DrawerLayout
+import android.support.v4.widget.NestedScrollView
 import android.view.View
 import android.widget.ImageView
 import android.widget.LinearLayout
@@ -12,16 +16,19 @@ import lx.own.frame.frame.mvp.base.BaseFrameActivity
 import own.lx.player.R
 import own.lx.player.common.config.ModuleEnum
 import own.lx.player.contract.HomeContract
-import own.lx.player.entity.VideoFileEntity
 import own.lx.player.model.HomeModel
 import own.lx.player.presenter.HomePresenter
 
 class HomeActivity : BaseFrameActivity<HomePresenter, HomeModel>(), HomeContract.IView {
 
+    private val mDrawer: DrawerLayout by lazy { findViewById<DrawerLayout>(R.id.homeActivity_dl_drawer) }
+    private val mTitleRoot: AppBarLayout by lazy { findViewById<AppBarLayout>(R.id.homeActivity_abl_titleRoot) }
     private val mTitleLayout: CollapsingToolbarLayout by lazy { findViewById<CollapsingToolbarLayout>(R.id.homeActivity_ctl_titleLayout) }
     private val mTitleBgImage: ImageView by lazy { findViewById<ImageView>(R.id.homeActivity_iv_titleBg) }
     private val mMenuBgImage: ImageView by lazy { findViewById<ImageView>(R.id.homeActivity_iv_menuBg) }
+    private val mScroller: NestedScrollView by lazy { findViewById<NestedScrollView>(R.id.homeActivity_nsv_scroller) }
     private lateinit var mMenus: Array<View?>
+    private var mCurrentlyFragment: Fragment? = null
 
     override fun onInitFuture() {
         setImmersedStatus(true)
@@ -60,12 +67,19 @@ class HomeActivity : BaseFrameActivity<HomePresenter, HomeModel>(), HomeContract
     }
 
     override fun onModuleSwitched(module: ModuleEnum) {
+        mDrawer.closeDrawers()
         mTitleLayout.title = getString(module.titleStringRes)
         mTitleBgImage.setImageResource(module.backgroundImgRes)
-    }
-
-    override fun onReceivedData(data: ArrayList<VideoFileEntity>) {
-
+        val transaction = supportFragmentManager.beginTransaction()
+        if (mCurrentlyFragment != null)
+            transaction.remove(mCurrentlyFragment!!)
+        //Kotlin反射要引入额外的jar包，太麻烦了，直接用java的class反射
+        mCurrentlyFragment = module.fragmentClazz.java.newInstance()
+        transaction.add(R.id.homeActivity_fl_content, mCurrentlyFragment!!)
+        transaction.show(mCurrentlyFragment!!)
+        transaction.commit()
+        mScroller.smoothScrollTo(mScroller.scrollX, 0)
+        mTitleRoot.setExpanded(true, true)
     }
 
     override fun onReceivedError(message: String) {
