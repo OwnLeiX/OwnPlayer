@@ -13,20 +13,20 @@ import kotlin.reflect.KClass
  */
 enum class ModuleEnum {
     Recently(
-        R.drawable.exo_icon_fastforward,
-        R.drawable.exo_notification_small_icon,
+        R.drawable.menu_bg,
+        R.drawable.default_head,
         R.string.recently,
         RecentlyFragment::class
     ),
     History(
-        R.drawable.exo_icon_fastforward,
-        R.drawable.exo_notification_small_icon,
+        R.drawable.menu_bg,
+        R.drawable.default_head,
         R.string.history,
         RecentlyFragment::class
     ),
     Local(
-        R.drawable.exo_icon_fastforward,
-        R.drawable.exo_notification_small_icon,
+        R.drawable.menu_bg,
+        R.drawable.default_head,
         R.string.local,
         RecentlyFragment::class
     );

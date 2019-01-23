@@ -135,7 +135,7 @@
             android:id="@+id/homeActivity_ll_leftMenu"
             android:layout_width="match_parent"
             android:background="@color/white"
-            android:divider="@drawable/menu_divider"
+            android:divider="@drawable/shape_menu_divider"
             android:dividerPadding="10dp"
             android:showDividers="middle"
             android:layout_height="wrap_content"
