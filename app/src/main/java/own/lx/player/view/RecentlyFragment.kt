@@ -7,7 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import lx.own.frame.frame.mvp.base.BaseFrameFragment
 import own.lx.player.R
-import own.lx.player.adapter.RecentlyVerticalAdapter
+import own.lx.player.adapter.RecentlyHorizontalAdapter
 import own.lx.player.contract.RecentlyContract
 import own.lx.player.entity.VideoFileEntity
 import own.lx.player.model.RecentlyModel
@@ -29,8 +29,8 @@ class RecentlyFragment : BaseFrameFragment<RecentlyPresenter, RecentlyModel>(),
     }
 
     override fun onInitView(contentView: View?) {
-        mRecyclerView.layoutManager = LinearLayoutManager(activity, LinearLayoutManager.VERTICAL, false)
-        mRecyclerView.adapter = RecentlyVerticalAdapter()
+        mRecyclerView.layoutManager = LinearLayoutManager(activity, LinearLayoutManager.HORIZONTAL, false)
+        mRecyclerView.adapter = RecentlyHorizontalAdapter()
     }
 
     override fun onInitListener() {
