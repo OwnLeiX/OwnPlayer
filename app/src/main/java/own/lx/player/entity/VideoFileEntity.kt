@@ -9,13 +9,13 @@ import org.json.JSONObject
  * Created on 2019/1/21.
  */
 class VideoFileEntity(
-    private var id: Long,
-    private var fileName: String,
-    private var path: String,
-    private var postfix: String,
-    private var timestamp: Long,
-    private var md5: String,
-    private var size: Long
+    var id: Long,
+    var fileName: String,
+    var path: String,
+    var postfix: String,
+    var timestamp: Long,
+    var md5: String,
+    var size: Long
 ) : IEntity {
 
     constructor(jsonObject: JSONObject) :
@@ -44,4 +44,6 @@ class VideoFileEntity(
         jsonObject.put("size", size)
         return jsonObject
     }
+
+
 }

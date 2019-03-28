@@ -1,5 +1,6 @@
 package own.lx.player.common.dao
 
+import android.content.ContentValues
 import android.database.sqlite.SQLiteDatabase
 import android.database.sqlite.SQLiteOpenHelper
 import android.util.Log
@@ -42,6 +43,49 @@ class HistoriesDAO() {
 
             override fun onUpgrade(db: SQLiteDatabase?, oldVersion: Int, newVersion: Int) {
             }
+        }
+    }
+
+    fun save(videoFile: VideoFileEntity) {
+        val db = mHelper.readableDatabase
+        if (db.isOpen) {
+            val contentValues = ContentValues()
+            contentValues.put(mColumnNameId, videoFile.id)
+            contentValues.put(mColumnNameName, videoFile.fileName)
+            contentValues.put(mColumnNamePostFix, videoFile.postfix)
+            contentValues.put(mColumnNamePath, videoFile.path)
+            contentValues.put(mColumnNameTimestamp, videoFile.timestamp)
+            contentValues.put(mColumnNameMD5, videoFile.md5)
+            contentValues.put(mColumnNameSize, videoFile.size)
+
+            val cursor = db.rawQuery(
+                "SELECT (?),(?),(?),(?),(?),(?),(?) FROM $mTableName WHERE ((?)=(?))",
+                arrayOf(
+                    mColumnNameId,
+                    mColumnNameName,
+                    mColumnNamePostFix,
+                    mColumnNamePath,
+                    mColumnNameTimestamp,
+                    mColumnNameMD5,
+                    mColumnNameSize,
+                    mColumnNameId,
+                    videoFile.id.toString()
+                )
+            )
+            if (cursor.count > 0) {
+                db.update(
+                    mTableName,
+                    contentValues,
+                    "?=?",
+                    arrayOf(
+                        mColumnNameId,
+                        videoFile.id.toString()
+                    )
+                )
+            } else {
+                db.insert(mTableName, null, contentValues)
+            }
+            cursor.close()
         }
     }
 
