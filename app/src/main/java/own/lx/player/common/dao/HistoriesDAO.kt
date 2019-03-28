@@ -13,7 +13,7 @@ import own.lx.player.entity.VideoFileEntity
  * @author LeiXun
  * Created on 2019/1/21.
  */
-class HistoriesDAO() {
+class HistoriesDAO {
 
     private val mDatabaseName: String = "db_histories"
     private val mTableName: String = "histories"
@@ -46,43 +46,38 @@ class HistoriesDAO() {
         }
     }
 
-    fun save(videoFile: VideoFileEntity) {
-        val db = mHelper.readableDatabase
+    fun saveRecently(videoFile: VideoFileEntity) {
+        val db = mHelper.writableDatabase
         if (db.isOpen) {
+            //generate content values. In any way, we need it's timestamp, so add it now.
             val contentValues = ContentValues()
-            contentValues.put(mColumnNameId, videoFile.id)
-            contentValues.put(mColumnNameName, videoFile.fileName)
-            contentValues.put(mColumnNamePostFix, videoFile.postfix)
-            contentValues.put(mColumnNamePath, videoFile.path)
             contentValues.put(mColumnNameTimestamp, videoFile.timestamp)
-            contentValues.put(mColumnNameMD5, videoFile.md5)
-            contentValues.put(mColumnNameSize, videoFile.size)
-
+            //query if this video is exists.
             val cursor = db.rawQuery(
-                "SELECT (?),(?),(?),(?),(?),(?),(?) FROM $mTableName WHERE ((?)=(?))",
+                "SELECT (?) FROM $mTableName WHERE (?)=(?)",
                 arrayOf(
                     mColumnNameId,
-                    mColumnNameName,
-                    mColumnNamePostFix,
                     mColumnNamePath,
-                    mColumnNameTimestamp,
-                    mColumnNameMD5,
-                    mColumnNameSize,
-                    mColumnNameId,
-                    videoFile.id.toString()
+                    videoFile.path
                 )
             )
-            if (cursor.count > 0) {
+            if (cursor.moveToNext()) {//exists, update it's timestamp.
                 db.update(
                     mTableName,
                     contentValues,
                     "?=?",
                     arrayOf(
                         mColumnNameId,
-                        videoFile.id.toString()
+                        cursor.getString(0)
                     )
                 )
-            } else {
+            } else {//does not exists, insert it.
+                contentValues.put(mColumnNameId, videoFile.id)
+                contentValues.put(mColumnNameName, videoFile.fileName)
+                contentValues.put(mColumnNamePostFix, videoFile.postfix)
+                contentValues.put(mColumnNamePath, videoFile.path)
+                contentValues.put(mColumnNameMD5, videoFile.md5)
+                contentValues.put(mColumnNameSize, videoFile.size)
                 db.insert(mTableName, null, contentValues)
             }
             cursor.close()
