@@ -1,4 +1,4 @@
-package own.lx.player.view
+package own.lx.player.view.fragment
 
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
@@ -7,7 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import lx.own.frame.frame.mvp.base.BaseFrameFragment
 import own.lx.player.R
-import own.lx.player.adapter.RecentlyHorizontalAdapter
+import own.lx.player.view.adapter.RecentlyHorizontalAdapter
 import own.lx.player.contract.RecentlyContract
 import own.lx.player.entity.VideoFileEntity
 import own.lx.player.model.RecentlyModel

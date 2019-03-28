@@ -1,10 +1,9 @@
-package own.lx.player.adapter
+package own.lx.player.view.adapter
 
 import android.support.v7.widget.RecyclerView
-import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import own.lx.player.R
+import android.widget.TextView
 
 /**
  * <b> </b><br/>
@@ -12,14 +11,15 @@ import own.lx.player.R
  * @author LeiXun
  * Created on 2019/1/23.
  */
-class RecentlyHorizontalAdapter() :
-    RecyclerView.Adapter<RecentlyHorizontalAdapter.InnerHolder>() {
+class RecentlyVerticalAdapter : RecyclerView.Adapter<RecentlyVerticalAdapter.InnerHolder>() {
     override fun onCreateViewHolder(parent: ViewGroup, position: Int): InnerHolder {
-        val view = LayoutInflater.from(parent.context).inflate(R.layout.item_recently_horizontal, parent, false)
-        return InnerHolder(view)
+        var textView = TextView(parent.context)
+        textView.layoutParams = ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, 200)
+        return InnerHolder(textView)
     }
 
     override fun onBindViewHolder(holder: InnerHolder, position: Int) {
+        (holder.itemView as TextView).text = "this is position $position ."
     }
 
     override fun getItemCount(): Int {

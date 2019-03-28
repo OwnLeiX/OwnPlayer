@@ -1,4 +1,4 @@
-package own.lx.player.adapter;
+package own.lx.player.view.adapter;
 
 import android.support.v7.widget.RecyclerView;
 
