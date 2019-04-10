@@ -4,20 +4,26 @@
     <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
         <!-- Customize your theme here. -->
     </style>
+
     <style name="leftBarCollapsedTitleTextAppearance">
         <item name="android:textColor">@color/white</item>
         <item name="android:textSize">12sp</item>
     </style>
+
     <style name="leftBarExpandedTitleTextAppearance">
         <item name="android:textColor">@color/white</item>
         <item name="android:textSize">20sp</item>
     </style>
+
     <style name="homeCollapsedTitleTextAppearance">
         <item name="android:textColor">@color/white</item>
         <item name="android:textSize">12sp</item>
+        <item name="android:textStyle">bold</item>
     </style>
+
     <style name="homeExpandedTitleTextAppearance">
         <item name="android:textColor">@color/white</item>
         <item name="android:textSize">25sp</item>
+        <item name="android:textStyle">bold</item>
     </style>
 </resources>

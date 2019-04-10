@@ -26,8 +26,8 @@ class HomePresenter : HomeContract.IPresenter() {
 
     override fun onInit(model: HomeContract.IModel?, view: HomeContract.IView?) {
         mBitmapProcessor = BitmapProcessor(mView.provideActivity())
-        mBitmapProcessor?.addChain(BlurBitmapChain(20.0f))
-        mBitmapProcessor?.addChain(TintBitmapChain(0x33000000))
+        mBitmapProcessor?.addChain(BlurBitmapChain(25.0f))
+        mBitmapProcessor?.addChain(TintBitmapChain(0x9900000))
     }
 
     override fun onIViewCreated() {

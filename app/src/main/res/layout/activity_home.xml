@@ -39,6 +39,7 @@
                     android:layout_marginBottom="5dp"
                     android:outlineProvider="bounds"
                     android:layout_marginStart="2dp"
+                    android:visibility="gone"
                     android:background="@drawable/shape_home_title_bg"
                     android:padding="0.5dp"
                     android:layout_marginEnd="2dp"
