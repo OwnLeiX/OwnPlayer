@@ -6,23 +6,21 @@
     android:gravity="center_vertical"
     android:paddingStart="10dp"
     android:paddingEnd="10dp"
-    android:layout_height="50dp">
+    android:layout_height="70dp">
+
+    <ImageView
+        android:id="@+id/menu_iv"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:scaleType="fitCenter"
+        tools:src="@drawable/exo_notification_small_icon" />
 
     <TextView
         android:id="@+id/menu_tv"
         android:layout_width="match_parent"
         android:layout_height="40dp"
-        android:layout_weight="1"
+        android:layout_marginStart="10dp"
         android:textColor="@color/gray99"
         android:textSize="14sp"
-        android:gravity="start|center_vertical"
-        tools:text="@string/recently" />
-
-    <ImageView
-        android:id="@+id/menu_iv"
-        android:layout_width="40dp"
-        android:layout_marginStart="10dp"
-        android:layout_height="40dp"
-        android:scaleType="fitCenter"
-        tools:src="@drawable/exo_notification_small_icon" />
+        android:gravity="start|center_vertical" />
 </LinearLayout>

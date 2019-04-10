@@ -9,11 +9,13 @@
 
     <android.support.design.widget.CoordinatorLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:background="@color/gray33">
 
         <android.support.design.widget.AppBarLayout
             android:id="@+id/homeActivity_abl_titleRoot"
             android:layout_width="match_parent"
+            android:background="@color/gray33"
             android:layout_height="150dp">
 
             <android.support.design.widget.CollapsingToolbarLayout
@@ -26,7 +28,6 @@
                 app:collapsedTitleTextAppearance="@style/homeCollapsedTitleTextAppearance"
                 app:expandedTitleTextAppearance="@style/homeExpandedTitleTextAppearance"
                 app:expandedTitleGravity="end|bottom"
-                android:background="@drawable/shape_home_title_bg"
                 app:title="@string/app_name">
 
                 <ImageView
@@ -55,6 +56,10 @@
         <own.lx.player.widget.ScrollEnableViewPager
             android:id="@+id/homeActivity_vp_content"
             android:layout_width="match_parent"
+            android:background="@drawable/shape_white_top_card"
+            android:elevation="2dp"
+            android:overScrollMode="never"
+            android:outlineProvider="background"
             android:layout_height="match_parent"
             app:layout_behavior="@string/appbar_scrolling_view_behavior" />
     </android.support.design.widget.CoordinatorLayout>

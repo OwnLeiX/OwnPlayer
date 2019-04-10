@@ -12,22 +12,40 @@ import kotlin.reflect.KClass
  * Created on 2019/1/21.
  */
 enum class ModuleEnum {
-    Recently(
-        R.drawable.menu_bg,
-        R.drawable.default_head,
-        R.string.recently,
-        RecentlyFragment::class
-    ),
     History(
         R.drawable.menu_bg,
-        R.drawable.default_head,
+        R.drawable.calendar_icon,
         R.string.history,
         RecentlyFragment::class
     ),
     Local(
         R.drawable.menu_bg,
-        R.drawable.default_head,
+        R.drawable.disk_icon,
         R.string.local,
+        RecentlyFragment::class
+    ),
+    Network(
+        R.drawable.menu_bg,
+        R.drawable.network_icon,
+        R.string.network,
+        RecentlyFragment::class
+    ),
+    Favorites(
+        R.drawable.menu_bg,
+        R.drawable.heart_icon,
+        R.string.favorites,
+        RecentlyFragment::class
+    ),
+    Analytics(
+        R.drawable.menu_bg,
+        R.drawable.analytics_icon,
+        R.string.analytics,
+        RecentlyFragment::class
+    ),
+    Search(
+        R.drawable.menu_bg,
+        R.drawable.search_icon,
+        R.string.search,
         RecentlyFragment::class
     );
 

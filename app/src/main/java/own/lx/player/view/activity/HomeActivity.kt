@@ -2,23 +2,24 @@ package own.lx.player.view.activity
 
 import android.graphics.Bitmap
 import android.graphics.drawable.BitmapDrawable
-import android.support.annotation.StringRes
 import android.support.design.widget.AppBarLayout
 import android.support.design.widget.CollapsingToolbarLayout
 import android.support.v4.app.Fragment
 import android.support.v4.app.FragmentStatePagerAdapter
 import android.support.v4.view.ViewPager
 import android.support.v4.widget.DrawerLayout
+import android.support.v7.widget.LinearLayoutManager
+import android.support.v7.widget.RecyclerView
 import android.view.View
 import android.widget.ImageView
-import android.widget.LinearLayout
-import android.widget.TextView
 import lx.own.frame.frame.mvp.base.BaseFrameActivity
 import own.lx.player.R
 import own.lx.player.common.config.ModuleEnum
+import own.lx.player.common.protocol.SingleParameterSubscriber
 import own.lx.player.contract.HomeContract
 import own.lx.player.model.HomeModel
 import own.lx.player.presenter.HomePresenter
+import own.lx.player.view.adapter.HomeLeftMenuAdapter
 
 class HomeActivity : BaseFrameActivity<HomePresenter, HomeModel>(), HomeContract.IView {
 
@@ -28,7 +29,6 @@ class HomeActivity : BaseFrameActivity<HomePresenter, HomeModel>(), HomeContract
     private val mTitleBgImage: ImageView by lazy { findViewById<ImageView>(R.id.homeActivity_iv_titleBg) }
     private val mMenuBgImage: ImageView by lazy { findViewById<ImageView>(R.id.homeActivity_iv_menuBg) }
     private val mViewPager: ViewPager by lazy { findViewById<ViewPager>(R.id.homeActivity_vp_content) }
-    private lateinit var mMenus: Array<View?>
     private var mCurrentlyFragment: Fragment? = null
 
     override fun onInitFuture() {
@@ -36,31 +36,34 @@ class HomeActivity : BaseFrameActivity<HomePresenter, HomeModel>(), HomeContract
     }
 
     override fun onInitView(root: View?) {
-        val menu: LinearLayout = findViewById(R.id.homeActivity_ll_leftMenu)
+        val menu: RecyclerView = findViewById(R.id.homeActivity_rv_leftMenu)
+        menu.layoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
         val modules = ModuleEnum.values()
-        mMenus = Array(modules.size) { null }
-        for (index in 0 until modules.size) {
-            mMenus[index] = layoutInflater.inflate(R.layout.item_home_menu, menu, false)
-            mMenus[index]?.tag = modules[index]
-            mMenus[index]?.findViewById<TextView>(R.id.menu_tv)?.setText(modules[index].titleStringRes)
-            mMenus[index]?.findViewById<ImageView>(R.id.menu_iv)?.setImageResource(modules[index].iconImgRes)
-            mMenus[index]?.setOnClickListener(mPresenter.provideMenuClickListener())
-            menu.addView(mMenus[index])
-        }
-        buildTextSpaceLine(findViewById(R.id.homeActivity_tv_leftLine), R.string.app_name)
-        buildTextSpaceLine(findViewById(R.id.homeActivity_tv_rightLine), R.string.app_name)
+        val adapter = HomeLeftMenuAdapter()
+        adapter.refreshDAta(modules)
+        //Capturing Expression, do not use lambda.
+        adapter.subscribe(
+            object : HomeLeftMenuAdapter.MenuSelectedSubscriber {
+                override fun onNext(item: ModuleEnum) {
+                    mPresenter.switchModule(item)
+                }
+            })
+        menu.adapter = adapter
     }
 
     override fun onInitListener() {
     }
 
     override fun onInitData(hasRestoreState: Boolean) {
-        mPresenter.processBitmap((mMenuBgImage.drawable as BitmapDrawable).bitmap)
-        { processedBitmap: Bitmap ->
-            mMenuBgImage.setImageBitmap(
-                processedBitmap
-            )
-        }
+        //Capturing Expression, do not use lambda.
+        mPresenter.processBitmap(
+            (mMenuBgImage.drawable as BitmapDrawable).bitmap,
+            object : SingleParameterSubscriber<Bitmap> {
+                override fun onNext(item: Bitmap) {
+                    mMenuBgImage.setImageBitmap(item)
+                }
+            }
+        )
     }
 
     override fun onProvideContentViewId(): Int {
@@ -90,39 +93,5 @@ class HomeActivity : BaseFrameActivity<HomePresenter, HomeModel>(), HomeContract
 
     override fun onReceivedError(message: String) {
         showShortToast(message)
-    }
-
-    private fun buildTextSpaceLine(tv: TextView, @StringRes resId: Int) {
-        val s = getString(resId)
-        if (s.isEmpty()) return
-        if (tv.isLaidOut) {
-            fixTextViewWidth(tv, s)
-        } else {
-            tv.addOnLayoutChangeListener(object : View.OnLayoutChangeListener {
-                override fun onLayoutChange(
-                    v: View?,
-                    left: Int,
-                    top: Int,
-                    right: Int,
-                    bottom: Int,
-                    oldLeft: Int,
-                    oldTop: Int,
-                    oldRight: Int,
-                    oldBottom: Int
-                ) {
-                    tv.removeOnLayoutChangeListener(this)
-                    fixTextViewWidth(tv, s)
-                }
-            })
-//            tv.addOnLayoutChangeListener { _, _, _, _, _, _, _, _, _ -> fixTextViewWidth(tv, s) }
-        }
-    }
-
-    private fun fixTextViewWidth(tv: TextView, content: String) {
-        val builder = StringBuilder(content)
-        while (tv.paint.measureText(builder.toString()) < tv.width) {
-            builder.append(content)
-        }
-        tv.text = builder.toString()
     }
 }
