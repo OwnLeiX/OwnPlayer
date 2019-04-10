@@ -1,0 +1,44 @@
+apply plugin: 'com.android.library'
+
+android {
+    compileSdkVersion compile_sdk_version
+    defaultConfig {
+        minSdkVersion min_sdk_version
+        targetSdkVersion target_sdk_version
+        versionCode 1
+        versionName "1.0"
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    api "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+    //Core functionality (required).
+    implementation('com.google.android.exoplayer:exoplayer-core:2.9.3') {
+        exclude group: 'com.android.support'
+    }
+    //Support for DASH content.
+    implementation('com.google.android.exoplayer:exoplayer-dash:2.9.3') {
+        exclude group: 'com.android.support'
+    }
+    //Support for HLS content.
+    implementation('com.google.android.exoplayer:exoplayer-hls:2.9.3') {
+        exclude group: 'com.android.support'
+    }
+    //Support for SmoothStreaming content. Android O
+    //    implementation ('com.google.android.exoplayer:exoplayer-smoothstreaming:2.9.3') {
+    //        exclude group: 'com.android.support'
+    //    }
+    //UI components and resources for use with ExoPlayer.
+    implementation('com.google.android.exoplayer:exoplayer-ui:2.9.3') {
+        exclude group: 'com.android.support'
+    }
+}
