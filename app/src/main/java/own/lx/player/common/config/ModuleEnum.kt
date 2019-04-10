@@ -13,37 +13,37 @@ import kotlin.reflect.KClass
  */
 enum class ModuleEnum {
     History(
-        R.drawable.menu_bg,
+        -1,
         R.drawable.calendar_icon,
         R.string.history,
         RecentlyFragment::class
     ),
     Local(
-        R.drawable.menu_bg,
+        -1,
         R.drawable.disk_icon,
         R.string.local,
         RecentlyFragment::class
     ),
     Network(
-        R.drawable.menu_bg,
+        -1,
         R.drawable.network_icon,
         R.string.network,
         RecentlyFragment::class
     ),
     Favorites(
-        R.drawable.menu_bg,
+        -1,
         R.drawable.heart_icon,
         R.string.favorites,
         RecentlyFragment::class
     ),
     Analytics(
-        R.drawable.menu_bg,
+        -1,
         R.drawable.analytics_icon,
         R.string.analytics,
         RecentlyFragment::class
     ),
     Search(
-        R.drawable.menu_bg,
+        -1,
         R.drawable.search_icon,
         R.string.search,
         RecentlyFragment::class

@@ -43,7 +43,7 @@ class HomeActivity : BaseFrameActivity<HomePresenter, HomeModel>(), HomeContract
         adapter.refreshDAta(modules)
         //Capturing Expression, do not use lambda.
         adapter.subscribe(
-            object : HomeLeftMenuAdapter.MenuSelectedSubscriber {
+            object : SingleParameterSubscriber<ModuleEnum> {
                 override fun onNext(item: ModuleEnum) {
                     mPresenter.switchModule(item)
                 }

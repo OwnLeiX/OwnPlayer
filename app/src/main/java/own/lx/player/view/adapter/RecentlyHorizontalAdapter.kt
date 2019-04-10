@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import own.lx.player.R
+import own.lx.player.common.protocol.RecyclerViewInnerHolder
 import own.lx.player.entity.VideoFileEntity
 
 /**
@@ -41,7 +42,12 @@ class RecentlyHorizontalAdapter() :
         mData?.add(data)
     }
 
-    inner class InnerHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+    inner class InnerHolder(itemView: View) : RecyclerViewInnerHolder<Any>(itemView) {
+        override fun bindView(view: View) {
 
+        }
+
+        override fun bindData(data: Any, position: Int) {
+        }
     }
 }

@@ -4,6 +4,7 @@ import android.support.v7.widget.RecyclerView
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import own.lx.player.common.protocol.RecyclerViewInnerHolder
 
 /**
  * <b> </b><br/>
@@ -26,7 +27,12 @@ class RecentlyVerticalAdapter : RecyclerView.Adapter<RecentlyVerticalAdapter.Inn
         return 50
     }
 
-    inner class InnerHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+    inner class InnerHolder(itemView: View) : RecyclerViewInnerHolder<Any>(itemView) {
+        override fun bindView(view: View) {
 
+        }
+
+        override fun bindData(data: Any, position: Int) {
+        }
     }
 }

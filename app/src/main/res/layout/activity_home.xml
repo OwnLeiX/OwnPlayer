@@ -22,7 +22,7 @@
                 android:id="@+id/homeActivity_ctl_titleLayout"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                app:layout_scrollFlags="scroll|exitUntilCollapsed"
+                app:layout_scrollFlags="scroll|enterAlwaysCollapsed"
                 app:collapsedTitleGravity="end|bottom"
                 app:titleEnabled="true"
                 app:collapsedTitleTextAppearance="@style/homeCollapsedTitleTextAppearance"

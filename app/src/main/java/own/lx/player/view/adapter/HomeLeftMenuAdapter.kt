@@ -9,6 +9,7 @@ import android.widget.TextView
 import lx.own.frame.frame.base.BaseOnClickListener
 import own.lx.player.R
 import own.lx.player.common.config.ModuleEnum
+import own.lx.player.common.protocol.RecyclerViewInnerHolder
 import own.lx.player.common.protocol.SingleParameterSubscriber
 
 /**
@@ -21,7 +22,7 @@ class HomeLeftMenuAdapter : RecyclerView.Adapter<HomeLeftMenuAdapter.InnerHolder
 
     private var data: Array<ModuleEnum>? = null
     private val clickListener: BaseOnClickListener
-    private var subscriber: MenuSelectedSubscriber? = null
+    private var subscriber: SingleParameterSubscriber<ModuleEnum>? = null
 
     init {
         clickListener = object : BaseOnClickListener() {
@@ -39,7 +40,7 @@ class HomeLeftMenuAdapter : RecyclerView.Adapter<HomeLeftMenuAdapter.InnerHolder
         notifyDataSetChanged()
     }
 
-    fun subscribe(s: MenuSelectedSubscriber) {
+    fun subscribe(s: SingleParameterSubscriber<ModuleEnum>) {
         subscriber = s
     }
 
@@ -52,31 +53,25 @@ class HomeLeftMenuAdapter : RecyclerView.Adapter<HomeLeftMenuAdapter.InnerHolder
     }
 
     override fun onBindViewHolder(p0: InnerHolder, p1: Int) {
-        p0.bindData(data!![p1])
+        p0.bindData(data!![p1], p1)
     }
 
 
-    inner class InnerHolder : RecyclerView.ViewHolder {
+    inner class InnerHolder(itemView: View) : RecyclerViewInnerHolder<ModuleEnum>(itemView) {
 
         private var iv: ImageView? = null
         private var tv: TextView? = null
 
-        constructor(itemView: View) : super(itemView) {
-            bindView(itemView)
-        }
-
-        private fun bindView(view: View) {
+        override fun bindView(view: View) {
             iv = view.findViewById(R.id.menu_iv)
             tv = view.findViewById(R.id.menu_tv)
             view.setOnClickListener(clickListener)
         }
 
-        internal fun bindData(data: ModuleEnum) {
+        override fun bindData(data: ModuleEnum, position: Int) {
             iv?.setImageResource(data.iconImgRes)
             tv?.setText(data.titleStringRes)
             itemView.tag = data
         }
     }
-
-    interface MenuSelectedSubscriber : SingleParameterSubscriber<ModuleEnum>
 }
