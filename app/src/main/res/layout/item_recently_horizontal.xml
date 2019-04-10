@@ -20,13 +20,6 @@
             android:layout_height="match_parent"
             android:orientation="vertical">
 
-            <ImageView
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="2"
-                android:src="@drawable/menu_bg"
-                android:scaleType="centerCrop" />
-
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="0dp"

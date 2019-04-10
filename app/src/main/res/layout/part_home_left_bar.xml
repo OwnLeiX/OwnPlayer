@@ -20,8 +20,8 @@
             android:id="@+id/homeActivity_iv_menuBg"
             android:layout_width="match_parent"
             android:scaleType="centerCrop"
-            android:layout_height="match_parent"
-            android:src="@drawable/menu_bg" />
+            android:src="@drawable/menu_title_bg"
+            android:layout_height="match_parent" />
 
         <ImageView
             android:id="@+id/homeActivity_iv_avatar"
