@@ -2,7 +2,6 @@ package own.lx.ownplayer
 
 import android.content.Context
 import own.lx.ownplayer.exo.IOwnPlayerExoImpl
-import own.lx.ownplayer.protocol.IOwnPlayer
 
 /**
  * <b> </b><br/>

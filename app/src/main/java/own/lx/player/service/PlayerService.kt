@@ -4,8 +4,8 @@ import android.app.Service
 import android.content.Intent
 import android.os.IBinder
 import android.view.Surface
+import own.lx.ownplayer.IOwnPlayer
 import own.lx.ownplayer.OwnPlayer
-import own.lx.ownplayer.protocol.IOwnPlayer
 import own.lx.player.PlayerController
 
 /**
@@ -14,7 +14,7 @@ import own.lx.player.PlayerController
  * @author Lei.X
  * Created on 2019/4/15.
  */
-class PlayerService() : Service() {
+class PlayerService : Service() {
 
     private var mIOwnPlayer: IOwnPlayer? = null
 

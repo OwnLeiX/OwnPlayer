@@ -8,4 +8,5 @@
     <string name="search">搜索找寻</string>
     <string name="default_nickname">游客</string>
     <string name="default_feeling">注册是不可能注册的，这辈子都不可能注册的。</string>
+    <string name="player_service_desc">OwnPlayer的播放进程</string>
 </resources>
