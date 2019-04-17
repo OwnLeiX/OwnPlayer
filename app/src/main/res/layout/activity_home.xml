@@ -54,6 +54,32 @@
             </android.support.design.widget.CollapsingToolbarLayout>
         </android.support.design.widget.AppBarLayout>
 
+        <android.support.design.widget.FloatingActionButton
+            android:id="@+id/homeActivity_fab_floatingButton1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical|end"
+            android:scaleType="fitCenter"
+            app:fabCustomSize="40dp"
+            app:backgroundTint="@color/gray33"
+            app:layout_anchor="@id/homeActivity_abl_titleRoot"
+            app:layout_anchorGravity="start|bottom"
+            android:layout_marginStart="20dp"
+            tools:src="@drawable/heart_icon" />
+
+        <android.support.design.widget.FloatingActionButton
+            android:id="@+id/homeActivity_fab_floatingButton2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical|end"
+            android:scaleType="fitCenter"
+            app:fabCustomSize="30dp"
+            app:backgroundTint="@color/gray33"
+            app:layout_anchor="@id/homeActivity_abl_titleRoot"
+            app:layout_anchorGravity="start|bottom"
+            android:layout_marginStart="60dp"
+            tools:src="@drawable/heart_icon" />
+
         <own.lx.player.widget.ScrollEnableViewPager
             android:id="@+id/homeActivity_vp_content"
             android:layout_width="match_parent"
@@ -63,6 +89,7 @@
             android:outlineProvider="background"
             android:layout_height="match_parent"
             app:layout_behavior="@string/appbar_scrolling_view_behavior" />
+
     </android.support.design.widget.CoordinatorLayout>
 
     <include layout="@layout/part_home_left_bar" />

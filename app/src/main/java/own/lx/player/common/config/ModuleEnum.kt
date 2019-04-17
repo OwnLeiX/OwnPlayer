@@ -2,6 +2,7 @@ package own.lx.player.common.config
 
 import android.support.v4.app.Fragment
 import own.lx.player.R
+import own.lx.player.view.fragment.LocalFragment
 import own.lx.player.view.fragment.RecentlyFragment
 import kotlin.reflect.KClass
 
@@ -22,7 +23,7 @@ enum class ModuleEnum {
         -1,
         R.drawable.disk_icon,
         R.string.local,
-        RecentlyFragment::class
+        LocalFragment::class
     ),
     Network(
         -1,
