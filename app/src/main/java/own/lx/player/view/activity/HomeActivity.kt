@@ -4,6 +4,7 @@ import android.graphics.Bitmap
 import android.graphics.drawable.BitmapDrawable
 import android.support.design.widget.AppBarLayout
 import android.support.design.widget.CollapsingToolbarLayout
+import android.support.design.widget.FloatingActionButton
 import android.support.v4.app.Fragment
 import android.support.v4.app.FragmentStatePagerAdapter
 import android.support.v4.view.ViewPager
@@ -12,6 +13,7 @@ import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
 import android.view.View
 import android.widget.ImageView
+import lx.own.frame.frame.base.BaseOnClickListener
 import lx.own.frame.frame.mvp.base.BaseFrameActivity
 import own.lx.player.R
 import own.lx.player.common.config.ModuleEnum
@@ -29,6 +31,7 @@ class HomeActivity : BaseFrameActivity<HomePresenter, HomeModel>(), HomeContract
     private val mTitleBgImage: ImageView by lazy { findViewById<ImageView>(R.id.homeActivity_iv_titleBg) }
     private val mMenuBgImage: ImageView by lazy { findViewById<ImageView>(R.id.homeActivity_iv_menuBg) }
     private val mViewPager: ViewPager by lazy { findViewById<ViewPager>(R.id.homeActivity_vp_content) }
+    private val mFloatingButton: FloatingActionButton by lazy { findViewById<FloatingActionButton>(R.id.homeActivity_fab_floatingButton) }
     private var mCurrentlyFragment: Fragment? = null
 
     override fun onInitFuture() {
@@ -40,7 +43,7 @@ class HomeActivity : BaseFrameActivity<HomePresenter, HomeModel>(), HomeContract
         menu.layoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
         val modules = ModuleEnum.values()
         val adapter = HomeLeftMenuAdapter()
-        adapter.refreshDAta(modules)
+        adapter.refreshData(modules)
         //Capturing Expression, do not use lambda.
         adapter.subscribe(
             object : SingleParameterSubscriber<ModuleEnum> {
@@ -52,6 +55,12 @@ class HomeActivity : BaseFrameActivity<HomePresenter, HomeModel>(), HomeContract
     }
 
     override fun onInitListener() {
+        //Capturing Expression, do not use lambda.
+        mFloatingButton.setOnClickListener(object : BaseOnClickListener() {
+            override fun onValidClick(v: View?) {
+                mPresenter.floatingAction()
+            }
+        })
     }
 
     override fun onInitData(hasRestoreState: Boolean) {
@@ -87,6 +96,14 @@ class HomeActivity : BaseFrameActivity<HomePresenter, HomeModel>(), HomeContract
             }
         } else {
             mViewPager.setCurrentItem(module.ordinal, true)
+        }
+        if (module.hasFloatingButton) {
+            mFloatingButton.setImageResource(module.floatingButtonDrawableRes)
+            mFloatingButton.isClickable = true
+            mFloatingButton.show()
+        } else {
+            mFloatingButton.isClickable = false
+            mFloatingButton.internalSetVisibility(View.GONE, true)
         }
         mTitleRoot.setExpanded(true, true)
     }

@@ -57,6 +57,22 @@ class HomePresenter : HomeContract.IPresenter() {
         }
     }
 
+    override fun floatingAction() {
+        when (mCurrentlyModule) {
+            ModuleEnum.Local -> {
+                mView.onReceivedError("does not implemented, open file explorer.")
+            }
+            ModuleEnum.Network -> {
+            }
+            ModuleEnum.Search -> {
+            }
+            ModuleEnum.Analytics -> {
+            }
+            else -> {
+            }
+        }
+    }
+
     override fun processBitmap(bitmap: Bitmap?, s: SingleParameterSubscriber<Bitmap>) {
         Observable
             .fromCallable { mBitmapProcessor!!.process(bitmap!!) }

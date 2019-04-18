@@ -24,5 +24,6 @@ interface HomeContract {
     abstract class IPresenter : BasePresenter<IModel, IView>() {
         abstract fun switchModule(module: ModuleEnum)
         abstract fun processBitmap(bitmap: Bitmap?, s: SingleParameterSubscriber<Bitmap>)
+        abstract fun floatingAction()
     }
 }

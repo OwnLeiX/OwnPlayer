@@ -12,53 +12,60 @@ import kotlin.reflect.KClass
  * @author LeiXun
  * Created on 2019/1/21.
  */
-enum class ModuleEnum {
+enum class ModuleEnum(
+    val backgroundImgRes: Int,
+    val iconImgRes: Int,
+    val titleStringRes: Int,
+    val fragmentClazz: KClass<out Fragment>,
+    val hasFloatingButton: Boolean,
+    val floatingButtonDrawableRes: Int
+) {
     History(
         -1,
         R.drawable.calendar_icon,
         R.string.history,
-        RecentlyFragment::class
+        RecentlyFragment::class,
+        false,
+        -1
     ),
     Local(
         -1,
         R.drawable.disk_icon,
         R.string.local,
-        LocalFragment::class
+        LocalFragment::class,
+        true,
+        R.drawable.add_icon
     ),
     Network(
         -1,
         R.drawable.network_icon,
         R.string.network,
-        RecentlyFragment::class
+        RecentlyFragment::class,
+        false,
+        -1
     ),
     Favorites(
         -1,
         R.drawable.heart_icon,
         R.string.favorites,
-        RecentlyFragment::class
+        RecentlyFragment::class,
+        false,
+        -1
     ),
     Analytics(
         -1,
         R.drawable.analytics_icon,
         R.string.analytics,
-        RecentlyFragment::class
+        RecentlyFragment::class,
+        false,
+        -1
     ),
     Search(
         -1,
         R.drawable.search_icon,
         R.string.search,
-        RecentlyFragment::class
+        RecentlyFragment::class,
+        false,
+        -1
     );
-
-    val backgroundImgRes: Int
-    val iconImgRes: Int
-    val titleStringRes: Int
-    val fragmentClazz: KClass<out Fragment>
-
-    private constructor(backgroundImgRes: Int, iconImgRes: Int, titleStringRes: Int, clazz: KClass<out Fragment>) {
-        this.backgroundImgRes = backgroundImgRes
-        this.iconImgRes = iconImgRes
-        this.titleStringRes = titleStringRes
-        this.fragmentClazz = clazz
-    }
 }

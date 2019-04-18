@@ -35,7 +35,7 @@ class HomeLeftMenuAdapter : RecyclerView.Adapter<HomeLeftMenuAdapter.InnerHolder
         }
     }
 
-    fun refreshDAta(data: Array<ModuleEnum>) {
+    fun refreshData(data: Array<ModuleEnum>) {
         this.data = data
         notifyDataSetChanged()
     }
