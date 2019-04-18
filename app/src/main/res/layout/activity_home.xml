@@ -23,11 +23,11 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 app:layout_scrollFlags="scroll|enterAlwaysCollapsed"
-                app:collapsedTitleGravity="start|bottom"
+                app:collapsedTitleGravity="center_horizontal|bottom"
                 app:titleEnabled="true"
                 app:collapsedTitleTextAppearance="@style/homeCollapsedTitleTextAppearance"
                 app:expandedTitleTextAppearance="@style/homeExpandedTitleTextAppearance"
-                app:expandedTitleGravity="end|bottom"
+                app:expandedTitleGravity="start|bottom"
                 app:title="@string/app_name">
 
                 <ImageView
@@ -55,29 +55,16 @@
         </android.support.design.widget.AppBarLayout>
 
         <android.support.design.widget.FloatingActionButton
-            android:id="@+id/homeActivity_fab_floatingButton1"
+            android:id="@+id/homeActivity_fab_floatingButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical|end"
             android:scaleType="fitCenter"
-            app:fabCustomSize="40dp"
+            app:fabCustomSize="50dp"
             app:backgroundTint="@color/gray33"
             app:layout_anchor="@id/homeActivity_abl_titleRoot"
-            app:layout_anchorGravity="start|bottom"
-            android:layout_marginStart="20dp"
-            tools:src="@drawable/heart_icon" />
-
-        <android.support.design.widget.FloatingActionButton
-            android:id="@+id/homeActivity_fab_floatingButton2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_vertical|end"
-            android:scaleType="fitCenter"
-            app:fabCustomSize="30dp"
-            app:backgroundTint="@color/gray33"
-            app:layout_anchor="@id/homeActivity_abl_titleRoot"
-            app:layout_anchorGravity="start|bottom"
-            android:layout_marginStart="60dp"
+            app:layout_anchorGravity="end|bottom"
+            android:layout_marginEnd="30dp"
             tools:src="@drawable/heart_icon" />
 
         <own.lx.player.widget.ScrollEnableViewPager
